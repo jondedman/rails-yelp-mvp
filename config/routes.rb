@@ -1,7 +1,12 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
+  get 'reviews/new'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :restaurants
+  resources :restaurants, only: [:index, :new, :show, :create] do
+    resources :reviews, only: [:create]
+  end
 end
